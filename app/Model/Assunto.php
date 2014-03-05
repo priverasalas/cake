@@ -50,6 +50,7 @@ class Assunto extends AppModel {
  *
  * @var array
  */
+/*
 	public $hasAndBelongsToMany = array(
 		'Modelo' => array(
 			'className' => 'Modelo',
@@ -77,6 +78,6 @@ class Assunto extends AppModel {
 			'offset' => '',
 			'finderQuery' => '',
 		)
-	);
+	);*/
 
 }

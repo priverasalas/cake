@@ -26,6 +26,49 @@ class AssuntosController extends AppController {
 	}
 
 /**
+ * --- AJAX ----
+ */
+
+public function descricao_dropdown ()
+{
+    $descricoes = '';
+    $this->set('descricoes', $descricoes);
+}
+
+public function find_descricao() {
+   $this->Assunto->recursive = -1;
+   if ($this->request->is('ajax')) {
+      $this->autoRender = false;
+      $this->layout = 'ajax';
+      $results = $this->Assunto->find('all', array('fields' => array('Assunto.descricao'),
+          'conditions' => array('Assunto.descricao LIKE ' => $this->request->query['term'] . '%'),
+          'group' => array('Assunto.descricao'),
+       ));
+      $descricoes = Set::extract('../Assunto/descricao', $results);           
+      echo json_encode($descricoes);
+   }
+}
+
+public function find_palavrachave() {
+   $this->Assunto->recursive = -1;
+   if ($this->request->is('ajax')) {
+      $this->autoRender = false;
+      $this->layout = 'ajax';
+      $results = $this->Assunto->find('all', array('fields' => array('Assunto.palavras_chave'),
+          'conditions' => array('Assunto.palavras_chave LIKE ' => $this->request->query['term'] . '%'),
+          'group' => array('Assunto.palavras_chave'),
+       ));
+      $palavras = Set::extract('../Assunto/palavras_chave', $results);           
+      echo json_encode($palavras);
+   }
+}
+
+/**
+ * --- AJAX ----
+ */
+
+
+/**
  * view method
  *
  * @throws NotFoundException
@@ -46,6 +89,12 @@ class AssuntosController extends AppController {
  * @return void
  */
 	public function add() {
+
+		$descricoes = '';
+    	$this->set('descricoes', $descricoes);
+    	$palavras = '';
+    	$this->set('palavras', $palavras);
+
 		if ($this->request->is('post')) {
 			$this->Assunto->create();
 			if ($this->Assunto->save($this->request->data)) {
@@ -55,10 +104,10 @@ class AssuntosController extends AppController {
 				$this->Session->setFlash(__('The assunto could not be saved. Please, try again.'));
 			}
 		}
-		$modelos = $this->Assunto->Modelo->find('list');
+		/*$modelos = $this->Assunto->Modelo->find('list');
 		$tabelas = $this->Assunto->Tabela->find('list');
 		$this->set(compact('modelos'));
-		$this->set('selectList', $tabelas);
+		$this->set('selectList', $tabelas);*/
 	}
 
 /**
@@ -83,9 +132,9 @@ class AssuntosController extends AppController {
 			$options = array('conditions' => array('Assunto.' . $this->Assunto->primaryKey => $id));
 			$this->request->data = $this->Assunto->find('first', $options);
 		}
-		$modelos = $this->Assunto->Modelo->find('list');
+		/*$modelos = $this->Assunto->Modelo->find('list');
 		$tabelas = $this->Assunto->Tabela->find('list');
-		$this->set(compact('modelos', 'tabelas'));
+		$this->set(compact('modelos', 'tabelas'));*/
 	}
 
 /**
