@@ -55,9 +55,13 @@ class ModelosController extends AppController {
 				$this->Session->setFlash(__('The modelo could not be saved. Please, try again.'));
 			}
 		}
-		$catalogoDatabaseCatalogoDatabases = $this->Modelo->CatalogoDatabaseCatalogoDatabase->find('list');
-		$assuntos = $this->Modelo->Assunto->find('list');
-		$this->set(compact('catalogoDatabaseCatalogoDatabases', 'assuntos'));
+		$catalogos = $this->Modelo->CatalogoDatabase->find('list');
+		$this->set('selectList1', $catalogos);
+		//$this->set(compact('CatalogoDatabases'));
+		//$assuntos = $this->Modelo->Assunto->find('list');
+		$tabelas = $this->Modelo->Tabela->find('list');
+		$this->set('selectList', $tabelas);
+		
 	}
 
 /**

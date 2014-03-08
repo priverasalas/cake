@@ -5,9 +5,15 @@
 	<?php
 		echo $this->Form->input('nome');
 		echo $this->Form->input('descricao');
-		echo $this->Form->input('Catalogo_Database_idCatalogo_Database');
-		echo $this->Form->input('idFactTable');
-		echo $this->Form->input('Assunto');
+		echo $this->Form->input('Catalogo_Database_idCatalogo_Database', array(
+                                        'options' => $selectList1,
+                                        'type' => 'select'
+                                     ));
+		echo $this->Form->input('idFactTable', array(
+                                        'options' => $selectList,
+                                        'type' => 'select'
+                                     ));
+		//echo $this->Form->input('Assunto');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
@@ -17,7 +23,5 @@
 	<ul>
 
 		<li><?php echo $this->Html->link(__('List Modelos'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Assuntos'), array('controller' => 'assuntos', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Assunto'), array('controller' => 'assuntos', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

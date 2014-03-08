@@ -60,22 +60,35 @@ class Modelo extends AppModel {
  *
  * @var array
  */
-	/*public $belongsTo = array(
-		'CatalogoDatabaseCatalogoDatabase' => array(
-			'className' => 'CatalogoDatabaseCatalogoDatabase',
+	public $belongsTo = array(
+		'CatalogoDatabase' => array(
+			'className' => 'CatalogoDatabase',
 			'foreignKey' => 'Catalogo_Database_idCatalogo_Database',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Tabela' => array(
+			'className' => 'Tabela',
+			//'joinTable' => 'assuntos_tabelas',
+			'foreignKey' => 'idFactTable',
+			//'associationForeignKey' => 'tabela_id',
+			//'unique' => 'keepExisting',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+			//'limit' => '',
+			//'offset' => '',
+			//'finderQuery' => '',
 		)
-	);*/
+	);
 
 /**
  * hasAndBelongsToMany associations
  *
  * @var array
  */
-	public $hasAndBelongsToMany = array(
+	/*public $hasAndBelongsToMany = array(
 		'Assunto' => array(
 			'className' => 'Assunto',
 			'joinTable' => 'assuntos_modelos',
@@ -89,6 +102,6 @@ class Modelo extends AppModel {
 			'offset' => '',
 			'finderQuery' => '',
 		)
-	);
+	);*/
 
 }

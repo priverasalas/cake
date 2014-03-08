@@ -14,13 +14,14 @@ class CatalogoDatabase extends AppModel {
  * @var mixed False or table name
  */
 	public $useTable = 'catalogo_database';
-
+	
 /**
  * Primary key field
  *
  * @var string
  */
 	public $primaryKey = 'idCatalogo_Database';
+	var $displayField = 'descricao';
 
 /**
  * Validation rules
@@ -41,6 +42,16 @@ class CatalogoDatabase extends AppModel {
 		'porta' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'descricao' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
